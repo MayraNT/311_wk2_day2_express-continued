@@ -7,10 +7,10 @@ const list = (req, res) => {
 
 // function for GET one contact by id
 const show = (req, res) => {
-  const contactFound = contacts.some(comment => comment._id === parseInt(req.params.id));
+  const contactFound = contacts.some(contact => contact._id === parseInt(req.params.id));
 
    if (contactFound) {
-     res.json(contacts.find(comment => comment._id === parseInt(req.params.id)));
+     res.json(contacts.find(contact => contact._id === parseInt(req.params.id)));
    } else {
      res.status(400).json({ msg: `No contacts found with the id of ${req.params.id}` });
    }
