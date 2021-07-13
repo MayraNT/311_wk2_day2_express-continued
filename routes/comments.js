@@ -1,22 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const comments = require('../data/comments')
 
-router.get('/comments', (req, res) => {
-  res.json(comments);
-})
+const commentsController = require('../controllers/comments')
 
-router.get('/comments/:id', (req, res) => {
-  res.json(comments.find(comment => comment._id === parseInt(req.params.id)));
-})
+// GET all comments
+router.get('/comments', commentsController.list)
 
-router.post('/comments', (req, res) => {
-  req.body = {
-    "_id": comments.length + 1,
-    "body": req.body.body,
-    "postId": 1
-  }
-  comments.push(req.body);
-})
+// GET one comment by id
+router.get('/comments/:id', commentsController.show)
+
+// POST new comment
+router.post('/comments', commentsController.create)
 
 module.exports = router;

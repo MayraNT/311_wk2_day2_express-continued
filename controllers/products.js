@@ -1,9 +1,11 @@
 const products = require('../data/products')
 
+// function for GET all products
 const list = (req, res) => {
   res.json(products);
 }
 
+// function for GET one product by id
 const show = (req, res) => {
   const productFound = products.some(product => product._id === parseInt(req.params.id));
 
@@ -14,6 +16,7 @@ const show = (req, res) => {
    }
 }
 
+// function to POST new product
 const create = (req, res) => {
   req.body = {
     "_id": products.length + 1,
